@@ -1,0 +1,5 @@
+add .gitignore
+create firebase functions
+create game, takes in name, creates if valid - do something avoids collisions?
+    - also takes in questios
+game needs sense of players - dont avoid collitions yet
