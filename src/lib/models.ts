@@ -1,7 +1,7 @@
-export type Question = FibbageQuestion
+export type Question = FibbageQuestion;
 
 export interface FibbageQuestion {
-    type: "Fibbage";
-    question: string;
-    answer: string;
+	type: 'Fibbage';
+	question: string;
+	answer: string;
 }
