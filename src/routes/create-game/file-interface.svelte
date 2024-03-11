@@ -15,7 +15,7 @@
 		}
 	}
 
-	function chooseQuestions(): Question[] {
+	function chooseQuestions() {
 		const questions: Question[] = [];
 		const questionBlocks = input.split(/\r?\n-+\r?\n/);
 		const selectedQuestions = popRadomElements(questionBlocks, questionsCount);
@@ -38,7 +38,7 @@
 			}
 		}
 
-		return questions;
+		chosenQuestions = questions;
 	}
 	// Quiz question will have first anser be correct and rest be wrong
 </script>
