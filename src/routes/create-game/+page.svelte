@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { uniqueNamesGenerator, adjectives, colors, animals } from 'unique-names-generator';
+	import { goto } from '$app/navigation';
+
 	import Header from '$lib/components/Header.svelte';
 	import FileInterface from './file-interface.svelte';
 	import type { Question } from '$lib/models';
@@ -8,11 +10,16 @@
 	async function create() {
 		const randomName = uniqueNamesGenerator({
 			dictionaries: [adjectives, adjectives, colors, animals],
-			separator: '-',
-			length: 4
+			separator: '',
+			length: 4,
+			style: 'capital'
 		});
-		const success = createGame(randomName, chosenQuestions);
-		//redirect
+		const success = await createGame(randomName, chosenQuestions);
+
+		if (success) {
+			goto('./play-game?name=' + randomName);
+		} else {
+		}
 	}
 
 	let chosenQuestions: Question[] = [];

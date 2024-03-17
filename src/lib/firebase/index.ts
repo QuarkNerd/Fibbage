@@ -14,7 +14,7 @@ export async function createGame(name: string, questions: Question[]): Promise<b
 	const game: Game = {
 		questions,
 		users: [],
-		actions: []
+		rounds: []
 	};
 	setDoc(ref, game);
 	return true;

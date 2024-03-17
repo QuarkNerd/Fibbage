@@ -1,5 +1,17 @@
-add .gitignore
-create firebase functions
-create game, takes in name, creates if valid - do something avoids collisions?
-    - also takes in questios
 game needs sense of players - dont avoid collitions yet
+alllow trailing ------- in input
+
+Q1
+A1
+-------
+Q2
+A2
+-------
+Q3
+A3
+-------
+Q4
+A4
+-------
+Q5
+A5

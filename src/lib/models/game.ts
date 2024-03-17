@@ -3,13 +3,25 @@ import type { Question } from './question';
 export interface Game {
 	questions: Question[];
 	users: string[];
-	actions: Action[];
+	rounds: Round[];
+	// if rounds is empty then waiting for names
+	// game over is questions === rounds and last round is done, show final scores
 }
 
-export type Action = Start | Fib | Guess;
+export type Round = FibbageRound | QuizRound;
 
-interface Start {
-	type: 'Start';
+interface BaseRound {
+	guesses: Guess[];
+	resultConfirmed: string[];
+}
+
+interface FibbageRound extends BaseRound {
+	type: 'Fibbage';
+	fibs: Fib[];
+}
+
+interface QuizRound extends BaseRound {
+	type: 'Quiz';
 }
 
 interface Fib {
@@ -22,7 +34,7 @@ interface Fib {
 type Guess = GuessRight | GuessWrong;
 
 interface GuessBase {
-	type: 'Guess';
+	// type: 'Guess';
 	user: string;
 	round: number;
 }
