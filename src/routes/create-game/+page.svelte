@@ -2,7 +2,7 @@
 	import { uniqueNamesGenerator, adjectives, colors, animals } from 'unique-names-generator';
 	import { goto } from '$app/navigation';
 
-	import Header from '$lib/components/Header.svelte';
+	import { Header } from '$lib/components';
 	import FileInterface from './file-interface.svelte';
 	import type { Question } from '$lib/models';
 	import { createGame } from '$lib/firebase';
@@ -16,6 +16,7 @@
 		});
 		const success = await createGame(randomName, chosenQuestions);
 
+		// add waiting and add redirecting timeout
 		if (success) {
 			goto('./play-game?name=' + randomName);
 		} else {
@@ -26,7 +27,7 @@
 </script>
 
 <Header header="Create Game" />
-<FileInterface {chosenQuestions} />
+<FileInterface bind:chosenQuestions />
 
 <button on:click={create}>Create</button>
 
