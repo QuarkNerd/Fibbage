@@ -1,11 +1,9 @@
 import type { Game, Question } from '$lib/models';
-import { firebassApp } from './firebaseConfig';
-import { getFirestore, getDoc, doc, setDoc } from 'firebase/firestore/lite';
-
-const db = getFirestore(firebassApp);
+import { firestore } from './firebaseConfig';
+import { getDoc, doc, setDoc } from 'firebase/firestore/lite';
 
 export async function createGame(name: string, questions: Question[]): Promise<boolean> {
-	const ref = doc(db, 'private-games', name);
+	const ref = doc(firestore, 'private-games', name);
 	try {
 		// Current rules cause error to be thrown when doc does not exist
 		const gameDoc = await getDoc(ref);
@@ -19,3 +17,6 @@ export async function createGame(name: string, questions: Question[]): Promise<b
 	setDoc(ref, game);
 	return true;
 }
+
+export { firestore } from './firebaseConfig';
+export * from './docStore';
