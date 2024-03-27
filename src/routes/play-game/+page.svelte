@@ -21,7 +21,7 @@
 		{#if $game.error}
 			an error occurred please check the url or make a new game. REFRESH
 		{:else if $game.data}
-			<GameDisplay game={$game.data} gameName={name} />
+			<GameDisplay game={$game.data} />
 		{:else}
 			error
 		{/if}

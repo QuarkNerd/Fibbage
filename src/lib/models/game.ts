@@ -1,7 +1,8 @@
-import type { Question } from './question';
+import type { FibbageQuestion, QuizQuestion } from './question';
 
 export interface Game {
-	questions: Question[];
+	name: string;
+	currentRound: number;
 	users: string[];
 	rounds: Round[];
 	// if rounds is empty then waiting for names
@@ -18,10 +19,12 @@ interface BaseRound {
 interface FibbageRound extends BaseRound {
 	type: 'Fibbage';
 	fibs: Fib[];
+	question: FibbageQuestion;
 }
 
 interface QuizRound extends BaseRound {
 	type: 'Quiz';
+	question: QuizQuestion;
 }
 
 interface Fib {
@@ -34,7 +37,6 @@ interface Fib {
 type Guess = GuessRight | GuessWrong;
 
 interface GuessBase {
-	// type: 'Guess';
 	user: string;
 	round: number;
 }

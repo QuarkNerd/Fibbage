@@ -7,7 +7,7 @@ export function stateUpdateLogin(
 	if (game.users.includes(user)) {
 		return 'USERNAME_TAKEN';
 	}
-	if (game.rounds.length > 0) {
+	if (game.currentRound > -1) {
 		return 'GAME_ALREADY_STARTED';
 	}
 	return { users: [...game.users, user] };
@@ -19,21 +19,9 @@ export function stateUpdateStartGame(
 	if (game.users.length < 2) {
 		return 'NOT_ENOUGH_PLAYERS';
 	}
-	if (game.rounds.length > 0) {
+	if (game.currentRound > -1) {
 		return 'GAME_ALREADY_STARTED';
 	}
 
-	if (game.questions[0].type === 'Fibbage') {
-		return {
-			rounds: [
-				{
-					type: 'Fibbage',
-					fibs: [],
-					guesses: [],
-					resultConfirmed: []
-				}
-			]
-		};
-	}
-	throw new Error('Not implemented');
+	return { currentRound: 0 };
 }

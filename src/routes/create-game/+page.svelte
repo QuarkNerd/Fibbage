@@ -4,7 +4,7 @@
 
 	import { Header } from '$lib/components';
 	import FileInterface from './file-interface.svelte';
-	import type { Question } from '$lib/models';
+	import type { Round } from '$lib/models';
 	import { createGame } from '$lib/firebase';
 
 	async function create() {
@@ -23,7 +23,7 @@
 		}
 	}
 
-	let chosenQuestions: Question[] = [];
+	let chosenQuestions: Round[] = [];
 </script>
 
 <Header header="Create Game" />

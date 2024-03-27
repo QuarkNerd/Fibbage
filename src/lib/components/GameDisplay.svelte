@@ -4,26 +4,19 @@
 	import UserLogin from './GameDisplay/UserLogin.svelte';
 
 	export let game: Game;
-	export let gameName: string;
 
-	type State = 'WAITING_FOR_LOGINS' | 'GOOP'; // change to the titles for each screen
-
-	let user = localStorage.getItem(gameName);
-
-	$: state = calculateState(game);
-
-	function calculateState(game: Game): State {
-		if (!game.rounds.length) return 'WAITING_FOR_LOGINS';
-		return 'GOOP';
-	}
+	let user = localStorage.getItem(game.name);
+	$: currentRound = game.rounds[game.currentRound];
 </script>
 
 {#if user === null}
-	<UserLogin bind:user {gameName} />
+	<UserLogin bind:user gameName={game.name} />
 {:else}
 	You are {user}
-	{#if state == 'WAITING_FOR_LOGINS'}
-		<StartGame users={game.users} {gameName} />
+	{#if game.currentRound === -1}
+		<StartGame users={game.users} gameName={game.name} />
+	{:else if currentRound.type === 'Fibbage' && currentRound.fibs.length < game.users.length}
+		Submit lies
 	{:else}
 		aaaaaaaaaa
 	{/if}

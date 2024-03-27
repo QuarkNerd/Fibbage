@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { Question } from '$lib/models';
+	import type { Round } from '$lib/models';
 	import { download, popRadomElements } from '$lib/utils';
-	export let chosenQuestions: Question[];
+	export let chosenQuestions: Round[];
 
 	const questionsCount = 5;
 
@@ -16,7 +16,7 @@
 	}
 
 	function chooseQuestions() {
-		const questions: Question[] = [];
+		const questions: Round[] = [];
 		const questionBlocks = input.split(/\r?\n-+\r?\n/);
 		const selectedQuestions = popRadomElements(questionBlocks, questionsCount);
 		download('remaining-questions.txt', questionBlocks.join('\n-------------\n'));
@@ -29,8 +29,13 @@
 			if (lines.length === 2) {
 				questions.push({
 					type: 'Fibbage',
-					question: lines[0].trim(),
-					answer: lines[1].trim()
+					question: {
+						question: lines[0].trim(),
+						answer: lines[1].trim()
+					},
+					fibs: [],
+					guesses: [],
+					resultConfirmed: []
 				});
 			} else {
 				// quizQuestions

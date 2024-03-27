@@ -1,5 +1,5 @@
 import { stateUpdateLogin, stateUpdateStartGame } from '$lib/gameActions';
-import type { Game, Question } from '$lib/models';
+import type { Game, Round } from '$lib/models';
 import { firestore } from './firebaseConfig';
 import {
 	getDoc,
@@ -10,7 +10,7 @@ import {
 	DocumentReference
 } from 'firebase/firestore';
 
-export async function createGame(name: string, questions: Question[]): Promise<boolean> {
+export async function createGame(name: string, emptyRounds: Round[]): Promise<boolean> {
 	const ref = getDocRef(name);
 	try {
 		// Current rules should cause error to be thrown when doc does not exist
@@ -18,9 +18,10 @@ export async function createGame(name: string, questions: Question[]): Promise<b
 		if (gameDoc.exists()) return false;
 	} catch {}
 	const game: Game = {
-		questions,
+		name,
+		currentRound: -1,
 		users: [],
-		rounds: []
+		rounds: emptyRounds
 	};
 	setDoc(ref, game);
 	return true;
