@@ -1,4 +1,4 @@
-Sseperate firebase logic from game logic by creating a generic wrapper for firebase functions
+In fib submission, convert to matching and reject similar to real, when doing this also figure out a way to stop people scoring themself
 
 ### Create Game
 

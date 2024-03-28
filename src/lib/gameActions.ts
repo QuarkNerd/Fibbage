@@ -1,4 +1,4 @@
-import type { Game } from './models';
+import type { Game, Guess } from './models';
 
 export function stateUpdateLogin(
 	game: Game,
@@ -43,13 +43,33 @@ export function stateUpdateSubmitFib(
 		return 'FIB_ALREADY_SUBMITTED';
 	}
 
-	currentRound.fibs = [
-		...currentRound.fibs,
-		{
-			user,
-			fib
-		}
-	];
+	currentRound.fibs.push({
+		user,
+		fib
+	});
 
 	return { rounds: game.rounds };
+}
+
+export function stateUpdateChooseAnswer(
+	game: Game,
+	guess: Guess,
+	roundNumber: number
+): Partial<Game> | 'INVALID' | 'GUESS_ALREADY_SUBMITTED' {
+	const user = guess.user;
+	if (game.currentRound !== roundNumber || !game.users.includes(user) || game.currentRound < 0) {
+		return 'INVALID';
+	}
+	const currentRound = game.rounds[game.currentRound];
+	if (currentRound.guesses.find((x) => x.user === user)) {
+		return 'GUESS_ALREADY_SUBMITTED';
+	}
+
+	currentRound.guesses.push(guess);
+
+	return { rounds: game.rounds };
+}
+
+export function calculateScores(game: Game): {user: string, score: number}[] {
+	return game.users.map(user => ({user, score: 888}));
 }

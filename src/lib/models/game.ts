@@ -32,7 +32,7 @@ export interface Fib {
 	user: string;
 }
 
-type Guess = GuessRight | GuessWrong;
+export type Guess = GuessRight | GuessWrong;
 
 interface GuessBase {
 	user: string;
@@ -44,7 +44,7 @@ interface GuessRight extends GuessBase {
 
 interface GuessWrong extends GuessBase {
 	correct: false;
-	fib: string;
+	value: string;
 }
 
 // rounds are 0 indexed
