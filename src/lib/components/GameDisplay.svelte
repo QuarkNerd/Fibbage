@@ -1,6 +1,7 @@
 <script lang="ts">
-	import type { Game } from '$lib/models';
+	import type { Game, Round } from '$lib/models';
 	import ChooseAnswer from './GameDisplay/ChooseAnswer.svelte';
+	import RoundOver from './GameDisplay/RoundOver.svelte';
 	import StartGame from './GameDisplay/StartGame.svelte';
 	import SubmitFib from './GameDisplay/SubmitFib.svelte';
 	import UserLogin from './GameDisplay/UserLogin.svelte';
@@ -8,21 +9,35 @@
 	export let game: Game;
 
 	let user = localStorage.getItem(game.name);
-	$: currentRound = game.rounds[game.currentRound];
+	let currentRound: Round | undefined;
+	$: currentRound = game.rounds[game.currentRoundNumber];
 </script>
 
 {#if user === null}
 	<UserLogin bind:user gameName={game.name} />
 {:else}
 	You are {user}
-	{#if game.currentRound === -1}
+	It is {game.currentRoundNumber}
+	{#if game.currentRoundNumber === -1}
 		<StartGame users={game.users} gameName={game.name} />
+	{:else if !currentRound}
+		gameOver
 	{:else if currentRound.type === 'Fibbage' && currentRound.fibs.length < game.users.length}
-		<SubmitFib gameName={game.name} {user} round={currentRound} roundNum={game.currentRound} />
+		<SubmitFib
+			gameName={game.name}
+			{user}
+			round={currentRound}
+			roundNum={game.currentRoundNumber}
+		/>
 	{:else if currentRound.guesses.length < game.users.length}
-		<ChooseAnswer gameName={game.name} {user} round={currentRound} roundNum={game.currentRound} />
+		<ChooseAnswer
+			gameName={game.name}
+			{user}
+			round={currentRound}
+			roundNum={game.currentRoundNumber}
+		/>
 	{:else}
-		aaaaaaaaaa
+		<RoundOver {game} {user} />
 	{/if}
 {/if}
 

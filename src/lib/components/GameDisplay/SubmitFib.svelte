@@ -11,7 +11,6 @@
 	$: userFib = round.fibs.find((fib) => fib.user === user);
 </script>
 
-It is {roundNum}
 {#if userFib === undefined}
 	Submit a lie for {round.question.question}
 	<SubmitText

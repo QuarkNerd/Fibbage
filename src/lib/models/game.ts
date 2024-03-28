@@ -2,7 +2,7 @@ import type { FibbageQuestion, QuizQuestion } from './question';
 
 export interface Game {
 	name: string;
-	currentRound: number;
+	currentRoundNumber: number;
 	users: string[];
 	rounds: Round[];
 	// if rounds is empty then waiting for names

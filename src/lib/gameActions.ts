@@ -1,4 +1,4 @@
-import type { Game, Guess } from './models';
+import type { Game, Guess, Round } from './models';
 
 export function stateUpdateLogin(
 	game: Game,
@@ -7,7 +7,7 @@ export function stateUpdateLogin(
 	if (game.users.includes(user)) {
 		return 'USERNAME_TAKEN';
 	}
-	if (game.currentRound > -1) {
+	if (game.currentRoundNumber > -1) {
 		return 'GAME_ALREADY_STARTED';
 	}
 	return { users: [...game.users, user] };
@@ -19,11 +19,11 @@ export function stateUpdateStartGame(
 	if (game.users.length < 2) {
 		return 'NOT_ENOUGH_PLAYERS';
 	}
-	if (game.currentRound > -1) {
+	if (game.currentRoundNumber > -1) {
 		return 'GAME_ALREADY_STARTED';
 	}
 
-	return { currentRound: 0 };
+	return { currentRoundNumber: 0 };
 }
 
 export function stateUpdateSubmitFib(
@@ -32,10 +32,14 @@ export function stateUpdateSubmitFib(
 	fib: string,
 	roundNumber: number
 ): Partial<Game> | 'INVALID' | 'NOT_FIBBAGE' | 'FIB_ALREADY_SUBMITTED' {
-	if (game.currentRound !== roundNumber || !game.users.includes(user) || game.currentRound < 0) {
+	if (
+		game.currentRoundNumber !== roundNumber ||
+		!game.users.includes(user) ||
+		game.currentRoundNumber < 0
+	) {
 		return 'INVALID';
 	}
-	const currentRound = game.rounds[game.currentRound];
+	const currentRound = game.rounds[game.currentRoundNumber];
 	if (currentRound.type !== 'Fibbage') {
 		return 'NOT_FIBBAGE';
 	}
@@ -57,10 +61,14 @@ export function stateUpdateChooseAnswer(
 	roundNumber: number
 ): Partial<Game> | 'INVALID' | 'GUESS_ALREADY_SUBMITTED' {
 	const user = guess.user;
-	if (game.currentRound !== roundNumber || !game.users.includes(user) || game.currentRound < 0) {
+	if (
+		game.currentRoundNumber !== roundNumber ||
+		!game.users.includes(user) ||
+		game.currentRoundNumber < 0
+	) {
 		return 'INVALID';
 	}
-	const currentRound = game.rounds[game.currentRound];
+	const currentRound = game.rounds[game.currentRoundNumber];
 	if (currentRound.guesses.find((x) => x.user === user)) {
 		return 'GUESS_ALREADY_SUBMITTED';
 	}
@@ -70,6 +78,55 @@ export function stateUpdateChooseAnswer(
 	return { rounds: game.rounds };
 }
 
-export function calculateScores(game: Game): {user: string, score: number}[] {
-	return game.users.map(user => ({user, score: 888}));
+export function stateUpdateResultConfirmed(
+	game: Game,
+	user: string,
+	roundNumber: number
+): Partial<Game> | 'INVALID' | 'ALREADY_CONFIRMED' {
+	if (
+		game.currentRoundNumber !== roundNumber ||
+		!game.users.includes(user) ||
+		game.currentRoundNumber < 0
+	) {
+		return 'INVALID';
+	}
+	const currentRound = game.rounds[game.currentRoundNumber];
+	if (currentRound.resultConfirmed.find((x) => x === user)) {
+		return 'ALREADY_CONFIRMED';
+	}
+
+	currentRound.resultConfirmed.push(user);
+	const currentRoundNumber =
+		currentRound.resultConfirmed.length === game.users.length ? roundNumber + 1 : roundNumber;
+	return { rounds: game.rounds, currentRoundNumber };
+}
+
+const correctScore = 100;
+const foolScore = 25;
+
+export function calculateScores(game: Game): [string, number][] {
+	const score = Object.fromEntries(game.users.map((user) => [user, 0]));
+	game.rounds.forEach((round) => updateScoreForRound(score, round));
+	return Object.entries(score).sort((a, b) => a[1] - b[1]);
+}
+
+interface Scores {
+	[user: string]: number;
+}
+
+function updateScoreForRound(score: Scores, round: Round) {
+	if (round.type === 'Fibbage') {
+		round.guesses.forEach((guess) => {
+			if (guess.correct) {
+				score[guess.user] += correctScore;
+				return;
+			}
+			round.fibs
+				.filter((fib) => fib.fib === guess.value)
+				.forEach((fib) => (score[fib.user] += foolScore));
+		});
+		return;
+	}
+
+	throw new Error('Not implemented');
 }

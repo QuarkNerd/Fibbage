@@ -1,6 +1,7 @@
 import {
 	stateUpdateChooseAnswer,
 	stateUpdateLogin,
+	stateUpdateResultConfirmed,
 	stateUpdateStartGame,
 	stateUpdateSubmitFib
 } from '$lib/gameActions';
@@ -24,7 +25,7 @@ export async function createGame(name: string, emptyRounds: Round[]): Promise<bo
 	} catch {}
 	const game: Game = {
 		name,
-		currentRound: -1,
+		currentRoundNumber: -1,
 		users: [],
 		rounds: emptyRounds
 	};
@@ -46,6 +47,10 @@ export async function submitFib(gameName: string, user: string, fib: string, rou
 
 export async function chooseAnswer(gameName: string, guess: Guess, roundNum: number) {
 	return await applyTransaction(stateUpdateChooseAnswer, gameName, guess, roundNum);
+}
+
+export async function confirmResult(gameName: string, user: string, roundNum: number) {
+	return await applyTransaction(stateUpdateResultConfirmed, gameName, user, roundNum);
 }
 
 export async function applyTransaction<T extends any[], R extends string>(
