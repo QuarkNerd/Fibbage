@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { login } from '$lib/firebase';
+	import SubmitText from '../SubmitText.svelte';
 
 	export let user: string | null;
 	export let gameName: string;
-	let tempName = '';
 
-	async function submit() {
+	async function submit(tempName: string) {
 		const result = await login(gameName, tempName);
 		if (result === 'USERNAME_TAKEN') {
 			//show error
@@ -18,5 +18,4 @@
 	}
 </script>
 
-<input type="text" bind:value={tempName} />
-<button on:click={submit}> Submit name</button>
+<SubmitText placeholder="Type your name and press enter" callback={submit} />
