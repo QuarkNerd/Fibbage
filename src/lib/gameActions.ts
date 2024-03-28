@@ -25,3 +25,31 @@ export function stateUpdateStartGame(
 
 	return { currentRound: 0 };
 }
+
+export function stateUpdateSubmitFib(
+	game: Game,
+	user: string,
+	fib: string,
+	roundNumber: number
+): Partial<Game> | 'INVALID' | 'NOT_FIBBAGE' | 'FIB_ALREADY_SUBMITTED' {
+	if (game.currentRound !== roundNumber || !game.users.includes(user) || game.currentRound < 0) {
+		return 'INVALID';
+	}
+	const currentRound = game.rounds[game.currentRound];
+	if (currentRound.type !== 'Fibbage') {
+		return 'NOT_FIBBAGE';
+	}
+	if (currentRound.fibs.find((x) => x.user === user)) {
+		return 'FIB_ALREADY_SUBMITTED';
+	}
+
+	currentRound.fibs = [
+		...currentRound.fibs,
+		{
+			user,
+			fib
+		}
+	];
+
+	return { rounds: game.rounds };
+}

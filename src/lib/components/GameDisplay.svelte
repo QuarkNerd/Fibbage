@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Game } from '$lib/models';
 	import StartGame from './GameDisplay/StartGame.svelte';
+	import SubmitFib from './GameDisplay/SubmitFib.svelte';
 	import UserLogin from './GameDisplay/UserLogin.svelte';
 
 	export let game: Game;
@@ -16,7 +17,7 @@
 	{#if game.currentRound === -1}
 		<StartGame users={game.users} gameName={game.name} />
 	{:else if currentRound.type === 'Fibbage' && currentRound.fibs.length < game.users.length}
-		Submit lies
+		<SubmitFib gameName={game.name} {user} round={currentRound} roundNum={game.currentRound} />
 	{:else}
 		aaaaaaaaaa
 	{/if}

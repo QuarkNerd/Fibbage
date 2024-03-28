@@ -1,4 +1,4 @@
-import { stateUpdateLogin, stateUpdateStartGame } from '$lib/gameActions';
+import { stateUpdateLogin, stateUpdateStartGame, stateUpdateSubmitFib } from '$lib/gameActions';
 import type { Game, Round } from '$lib/models';
 import { firestore } from './firebaseConfig';
 import {
@@ -33,6 +33,10 @@ export async function login(gameName: string, user: string) {
 
 export async function startGame(gameName: string) {
 	return await applyTransaction(stateUpdateStartGame, gameName);
+}
+
+export async function submitFib(gameName: string, user: string, fib: string, roundNumber: number) {
+	return await applyTransaction(stateUpdateSubmitFib, gameName, user, fib, roundNumber);
 }
 
 export async function applyTransaction<T extends any[], R extends string>(

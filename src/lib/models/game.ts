@@ -16,7 +16,7 @@ interface BaseRound {
 	resultConfirmed: string[];
 }
 
-interface FibbageRound extends BaseRound {
+export interface FibbageRound extends BaseRound {
 	type: 'Fibbage';
 	fibs: Fib[];
 	question: FibbageQuestion;
@@ -27,18 +27,15 @@ interface QuizRound extends BaseRound {
 	question: QuizQuestion;
 }
 
-interface Fib {
-	type: 'Fib';
+export interface Fib {
 	fib: string;
 	user: string;
-	round: number;
 }
 
 type Guess = GuessRight | GuessWrong;
 
 interface GuessBase {
 	user: string;
-	round: number;
 }
 
 interface GuessRight extends GuessBase {
