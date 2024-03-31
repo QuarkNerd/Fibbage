@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { Header } from '$lib/components';
+    import './style.css';
 </script>
 
 <Header header="Fibbage" />
-<div>
+<div class="main">
     Welcome to Fibbage with custom questions. In this game you try to trick your friends while finding the real answer yourselves. 
     
     <h3> Join a game</h3>
@@ -28,22 +29,4 @@
 h3 {
     margin-bottom: 0px;
 }
-
-div {
-    margin: 30px;
-    text-align: center;
-}
-
-.box {
-    padding: 10px;
-    margin: 10px auto;
-
-    width: 600px;
-    
-    background-color: aliceblue;
-    text-align: left;
-    box-shadow: 10px 10px 5px darkgray
-}
-
-
 </style>

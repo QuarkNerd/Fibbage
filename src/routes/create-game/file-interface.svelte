@@ -48,10 +48,17 @@
 	// Quiz question will have first anser be correct and rest be wrong
 </script>
 
-<label for="file">Choose a file (overrides text):</label>
+<label for="file">Choose a file:</label>
 <input id="file" name="file" type="file" bind:files />
 
-<label for="txt">Or paste text:</label>
+<label for="txt">Or enter text:</label>
 <textarea id="txt" name="txt" bind:value={input} />
-
+<br>
 <button on:click={chooseQuestions}>Submit questions</button>
+
+<style>
+	textarea {
+		width: 100%;
+		height: 100px;
+	}
+</style>
