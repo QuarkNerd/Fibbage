@@ -5,26 +5,55 @@
 		<link rel="icon" href="./favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		
-		<link href="./_app/immutable/assets/Header.j7o2TD2q.css" rel="stylesheet">
-		<link rel="modulepreload" href="./_app/immutable/entry/start.bnPLZd-d.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/entry.nvz3dYKV.js">
+		<link href="./_app/immutable/assets/style.Efu_rVmH.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/3.qxATSFLz.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/SubmitText.DFiH4_vE.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.49rNkgHU.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/entry.IlB8_IMH.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/scheduler.bGroypw6.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/app.H_6o04qm.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index.2Cmbg7Vy.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/0.HAAqhBkl.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/3.NSUcrc02.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/Header.svelte_svelte_type_style_lang.Epc9LGyB.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.NazwIrze.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.ZiHq4h1H.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/0.-tSfEGUN.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/3.CaTrYLKg.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/SubmitText.svelte_svelte_type_style_lang.bXODe_Eg.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/utils.8dcxgjFM.js">
 	</head>
 	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">  <div class="svelte-1gukn1x"><h1 class="svelte-1gukn1x">Create Game</h1> </div> <label for="file" data-svelte-h="svelte-zf4lk5">Choose a file (overrides text):</label> <input id="file" name="file" type="file"> <label for="txt" data-svelte-h="svelte-p9ooy9">Or paste text:</label> <textarea id="txt" name="txt"></textarea> <button data-svelte-h="svelte-1athlor">Submit questions</button> <button data-svelte-h="svelte-155es9o">Create</button>
-
-// check enough questions passed in? // create public games // only make create game when valid 
+		<div style="display: contents">  <title data-svelte-h="svelte-bofauk">Fibbage</title> <div class="svelte-18d6aj0"><h1 class="svelte-18d6aj0">Create Game</h1> </div> <div class="main"><h3 data-svelte-h="svelte-wu7nvi">Instrucutions</h3> <div class="box" data-svelte-h="svelte-1anvckn">To create a game you need to supply a list of possible questions. Use the file selector or
+		textbox below.
+		<br><br>
+		The format is to have the questions and answers seperated by a new line, with each set seperated
+		by a line containing only &#39;-&#39;s. There is an example below.
+		<br><br>
+		Add at least 5 questions.
+		<br><br>
+		Click submt questions and the game will choose 5 questions from the list at random and download a
+		file of the remaining questions for future games.
+		<br><br>
+		Click &#39;create&#39; to create the game
+		<br><br>
+		Share the url with friends to start playing</div> <h3 data-svelte-h="svelte-11idny0">Create game</h3> <div class="box"><label for="file" data-svelte-h="svelte-1nnpb4m">Choose a file:</label> <input id="file" name="file" type="file"> <label for="txt" data-svelte-h="svelte-z09l4u">Or enter text:</label> <textarea id="txt" name="txt" class="svelte-12pbnfv"></textarea> <br> <button data-svelte-h="svelte-1athlor">Submit questions</button> <br> <button disabled>Create</button> </div> <h3 data-svelte-h="svelte-1jwp74q">Example set of questions</h3> <div class="box" data-svelte-h="svelte-1vnbt4h">What is the value of pi?<br>
+		3.14<br>
+		--<br>
+		What is name of the Robot in Furturama?<br>
+		Bender Bending Rodríguez<br>
+		------<br>
+		Can he swing from a web?<br>
+		No he can&#39;t, he&#39;s a pig<br>
+		--<br>
+		What is the full form of T.A.R.D.I.S?<br>
+		Time and Relative Dimensions in Space<br>
+		------<br>
+		Who&#39;s a &quot;Hairy baaaabyyyy&quot;?<br>
+		Mochi the cat<br>
+		---<br>
+		It&#39;s evil, it&#39;s diabolical it&#39;s....<br>
+		Lemon Scented!</div></div> 
 			
 			<script>
 				{
-					__sveltekit_11rzk4b = {
-						base: new URL(".", location).pathname.slice(0, -1),
-						assets: "/Fibbage"
+					__sveltekit_1yq1r0x = {
+						base: new URL(".", location).pathname.slice(0, -1)
 					};
 
 					const element = document.currentScript.parentElement;
@@ -32,8 +61,8 @@
 					const data = [null,null];
 
 					Promise.all([
-						import("./_app/immutable/entry/start.bnPLZd-d.js"),
-						import("./_app/immutable/entry/app.H_6o04qm.js")
+						import("./_app/immutable/entry/start.49rNkgHU.js"),
+						import("./_app/immutable/entry/app.NazwIrze.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 3],
@@ -47,8 +76,19 @@
 		</div>
 	</body>
 	<style>
+		@font-face {
+			font-family: 'Playfair Display';
+			src: url('/fonts/PlayfairDisplay-wght.ttf') format('truetype-variations');
+			font-weight: 1 999;
+		}
+
 		body {
 			margin: 0;
+			/* font-family: "Playfair Display"; */
+			font-size: 20px;
+			font-weight: 500;
+
+			background-color: rgb(102, 51, 153, 0.2);
 		}
 	</style>
 </html>

@@ -5,22 +5,39 @@
 		<link rel="icon" href="./favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		
-		<link rel="modulepreload" href="./_app/immutable/entry/start.bnPLZd-d.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/entry.nvz3dYKV.js">
+		<link href="./_app/immutable/assets/style.Efu_rVmH.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/2.y244423h.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/SubmitText.DFiH4_vE.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.49rNkgHU.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/entry.IlB8_IMH.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/scheduler.bGroypw6.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/app.H_6o04qm.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index.2Cmbg7Vy.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/0.HAAqhBkl.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/2.vJ8-oXXb.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.NazwIrze.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.ZiHq4h1H.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/0.-tSfEGUN.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/2.qMRi8mkl.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/SubmitText.svelte_svelte_type_style_lang.bXODe_Eg.js">
 	</head>
 	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">  <h1 data-svelte-h="svelte-yyjjjs">Welcome to SvelteKit</h1> <p data-svelte-h="svelte-jl9sbz">Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p> 
+		<div style="display: contents">  <title data-svelte-h="svelte-bofauk">Fibbage</title> <div class="svelte-18d6aj0"><h1 class="svelte-18d6aj0">Fibbage</h1> </div> <div class="main" data-svelte-h="svelte-1kmuu58">Welcome to Fibbage with custom questions. In this game you try to trick your friends while finding
+	the real answer yourselves.
+
+	<h3 class="svelte-k1wkez">Join a game</h3>
+	To create a new game click<a href="./create-game">here</a>, to join an existing game ask someone
+	to send you the link.
+
+	<h3 class="svelte-k1wkez">How to play?</h3> <div class="box">In each round you are presented with a question.
+		<br> <br>
+		The first thing to do is to create a convincing lie. If you know the real answer, don&#39;t use it or
+		something too close to it as that volates the spirit of the game.
+		<br> <br>
+		Then once everyone has submitted the lie, choose what you think is the correct option.
+		<br> <br>
+		You will earn points for getting the question right and for everyone who chooses your answer.</div> </div> 
 			
 			<script>
 				{
-					__sveltekit_11rzk4b = {
-						base: new URL(".", location).pathname.slice(0, -1),
-						assets: "/Fibbage"
+					__sveltekit_1yq1r0x = {
+						base: new URL(".", location).pathname.slice(0, -1)
 					};
 
 					const element = document.currentScript.parentElement;
@@ -28,8 +45,8 @@
 					const data = [null,null];
 
 					Promise.all([
-						import("./_app/immutable/entry/start.bnPLZd-d.js"),
-						import("./_app/immutable/entry/app.H_6o04qm.js")
+						import("./_app/immutable/entry/start.49rNkgHU.js"),
+						import("./_app/immutable/entry/app.NazwIrze.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 2],
@@ -43,8 +60,19 @@
 		</div>
 	</body>
 	<style>
+		@font-face {
+			font-family: 'Playfair Display';
+			src: url('/fonts/PlayfairDisplay-wght.ttf') format('truetype-variations');
+			font-weight: 1 999;
+		}
+
 		body {
 			margin: 0;
+			/* font-family: "Playfair Display"; */
+			font-size: 20px;
+			font-weight: 500;
+
+			background-color: rgb(102, 51, 153, 0.2);
 		}
 	</style>
 </html>

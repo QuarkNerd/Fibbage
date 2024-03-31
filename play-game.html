@@ -5,25 +5,26 @@
 		<link rel="icon" href="./favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		
-		<link href="./_app/immutable/assets/Header.j7o2TD2q.css" rel="stylesheet">
-		<link rel="modulepreload" href="./_app/immutable/entry/start.bnPLZd-d.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/entry.nvz3dYKV.js">
+		<link href="./_app/immutable/assets/style.Efu_rVmH.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/SubmitText.DFiH4_vE.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.49rNkgHU.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/entry.IlB8_IMH.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/scheduler.bGroypw6.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/app.H_6o04qm.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index.2Cmbg7Vy.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/0.HAAqhBkl.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/4.UD8FGI6V.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/stores.nNjEfduh.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/Header.svelte_svelte_type_style_lang.Epc9LGyB.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.NazwIrze.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.ZiHq4h1H.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/0.-tSfEGUN.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/4.zr8gm19s.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/stores.Wy5Iqf8r.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/SubmitText.svelte_svelte_type_style_lang.bXODe_Eg.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/utils.8dcxgjFM.js">
 	</head>
 	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">  check the url 
+		<div style="display: contents">  <title data-svelte-h="svelte-bofauk">Fibbage</title> loading, if this takes longer than a few seconds something is wrong check the url 
 			
 			<script>
 				{
-					__sveltekit_11rzk4b = {
-						base: new URL(".", location).pathname.slice(0, -1),
-						assets: "/Fibbage"
+					__sveltekit_1yq1r0x = {
+						base: new URL(".", location).pathname.slice(0, -1)
 					};
 
 					const element = document.currentScript.parentElement;
@@ -31,8 +32,8 @@
 					const data = [null,null];
 
 					Promise.all([
-						import("./_app/immutable/entry/start.bnPLZd-d.js"),
-						import("./_app/immutable/entry/app.H_6o04qm.js")
+						import("./_app/immutable/entry/start.49rNkgHU.js"),
+						import("./_app/immutable/entry/app.NazwIrze.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 4],
@@ -46,8 +47,19 @@
 		</div>
 	</body>
 	<style>
+		@font-face {
+			font-family: 'Playfair Display';
+			src: url('/fonts/PlayfairDisplay-wght.ttf') format('truetype-variations');
+			font-weight: 1 999;
+		}
+
 		body {
 			margin: 0;
+			/* font-family: "Playfair Display"; */
+			font-size: 20px;
+			font-weight: 500;
+
+			background-color: rgb(102, 51, 153, 0.2);
 		}
 	</style>
 </html>
