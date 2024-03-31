@@ -107,7 +107,7 @@ const foolScore = 25;
 export function calculateScores(game: Game): [string, number][] {
 	const score = Object.fromEntries(game.users.map((user) => [user, 0]));
 	game.rounds.forEach((round) => updateScoreForRound(score, round));
-	return Object.entries(score).sort((a, b) => a[1] - b[1]);
+	return Object.entries(score).sort((a, b) => b[1] - a[1]);
 }
 
 interface Scores {

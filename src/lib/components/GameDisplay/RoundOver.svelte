@@ -2,6 +2,7 @@
 	import { confirmResult } from '$lib/firebase';
 	import { calculateScores } from '$lib/gameActions';
 	import type { FibbageRound, Game, Round } from '$lib/models';
+	import { Header } from '..';
 
 	export let game: Game;
 	export let user: string;
@@ -9,6 +10,7 @@
 	$: scores = calculateScores(game);
 	$: currentRound = game.rounds[game.currentRoundNumber] as FibbageRound;
 	$: confirmed = currentRound?.resultConfirmed.find((x) => x === user);
+	$: gameOver = game.currentRoundNumber === game.rounds.length - 1;
 
 	function getResultText(round: Round) {
 		let text = '';
@@ -34,7 +36,7 @@
 					.filter((guess) => !guess.correct && guess.value === userFib.fib)
 					.map((guess) => guess.user);
 
-				if (fooled.length) text += '\n You fooled' + fooled;
+				if (fooled.length) text += '\n You fooled ' + fooled;
 			}
 		}
 
@@ -42,19 +44,24 @@
 	}
 </script>
 
-{#if !confirmed}
-	<button on:click={() => confirmResult(game.name, user, game.currentRoundNumber)}>Confirm</button>
-{/if}
-
-{#if currentRound.type === 'Fibbage'}
-	{getResultText(currentRound)}
-{/if}
-
-Scores
-{#if scores}
-	{#each scores as [user, score]}
-		<div>
-			{user}: {score}
-		</div>
-	{/each}
-{/if}
+<Header header={gameOver ? 'Final Scores' : 'Scores'} />
+<div class="main">
+	{#if currentRound.type === 'Fibbage'}
+		{getResultText(currentRound)}
+	{/if}
+	<br />
+	<br />
+	Scoreboard
+	<div class="box">
+		{#each scores as [user, score]}
+			<div>
+				{user}: {score}
+			</div>
+		{/each}
+	</div>
+	<br />
+	{#if !confirmed && !gameOver}
+		<button on:click={() => confirmResult(game.name, user, game.currentRoundNumber)}>Confirm</button
+		>
+	{/if}
+</div>

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { stateUpdateResultConfirmed } from '$lib/gameActions';
 	import type { Game, Round } from '$lib/models';
 	import ChooseAnswer from './GameDisplay/ChooseAnswer.svelte';
 	import RoundOver from './GameDisplay/RoundOver.svelte';
@@ -10,7 +9,7 @@
 	export let game: Game;
 
 	let user = localStorage.getItem(game.name);
-	let currentRound: Round | undefined;
+	let currentRound: Round;
 	$: currentRound = game.rounds[game.currentRoundNumber];
 </script>
 
@@ -22,8 +21,6 @@
 	{/if}
 {:else if game.currentRoundNumber === -1}
 	<StartGame users={game.users} gameName={game.name} />
-{:else if !currentRound}
-	gameOver
 {:else if currentRound.type === 'Fibbage' && currentRound.fibs.length < game.users.length}
 	<SubmitFib gameName={game.name} {user} round={currentRound} roundNum={game.currentRoundNumber} />
 {:else if currentRound.guesses.length < game.users.length}
