@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { stateUpdateResultConfirmed } from '$lib/gameActions';
 	import type { Game, Round } from '$lib/models';
 	import ChooseAnswer from './GameDisplay/ChooseAnswer.svelte';
 	import RoundOver from './GameDisplay/RoundOver.svelte';
@@ -14,31 +15,26 @@
 </script>
 
 {#if user === null}
-	<UserLogin bind:user gameName={game.name} />
-{:else}
-	You are {user}
-	It is {game.currentRoundNumber}
 	{#if game.currentRoundNumber === -1}
-		<StartGame users={game.users} gameName={game.name} />
-	{:else if !currentRound}
-		gameOver
-	{:else if currentRound.type === 'Fibbage' && currentRound.fibs.length < game.users.length}
-		<SubmitFib
-			gameName={game.name}
-			{user}
-			round={currentRound}
-			roundNum={game.currentRoundNumber}
-		/>
-	{:else if currentRound.guesses.length < game.users.length}
-		<ChooseAnswer
-			gameName={game.name}
-			{user}
-			round={currentRound}
-			roundNum={game.currentRoundNumber}
-		/>
+		<UserLogin bind:user gameName={game.name} />
 	{:else}
-		<RoundOver {game} {user} />
+		The game has already started.
 	{/if}
+{:else if game.currentRoundNumber === -1}
+	<StartGame users={game.users} gameName={game.name} />
+{:else if !currentRound}
+	gameOver
+{:else if currentRound.type === 'Fibbage' && currentRound.fibs.length < game.users.length}
+	<SubmitFib gameName={game.name} {user} round={currentRound} roundNum={game.currentRoundNumber} />
+{:else if currentRound.guesses.length < game.users.length}
+	<ChooseAnswer
+		gameName={game.name}
+		{user}
+		round={currentRound}
+		roundNum={game.currentRoundNumber}
+	/>
+{:else}
+	<RoundOver {game} {user} />
 {/if}
 
 <div></div>

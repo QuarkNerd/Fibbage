@@ -21,5 +21,7 @@
 
 <Header header="Enter name" />
 <div class="main">
+	Share the URL to invite friends to play.
+
 	<SubmitText placeholder="Type your name and press enter" callback={submit} />
 </div>

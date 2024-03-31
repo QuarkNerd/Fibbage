@@ -30,5 +30,5 @@
 		loading
 	{/if}
 {:else}
-	check the url
+	loading, if this takes longer than a few seconds something is wrong check the url
 {/if}
