@@ -53,7 +53,7 @@
 
 <label for="txt">Or enter text:</label>
 <textarea id="txt" name="txt" bind:value={input} />
-<br>
+<br />
 <button on:click={chooseQuestions}>Submit questions</button>
 
 <style>

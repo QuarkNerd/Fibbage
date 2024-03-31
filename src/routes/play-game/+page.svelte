@@ -19,7 +19,8 @@
 {#if name}
 	{#if $game}
 		{#if $game.error}
-			An error occurred please refresh and check the URL. Wait a minute and then create a new game if the problem persists.
+			An error occurred please refresh and check the URL. Wait a minute and then create a new game
+			if the problem persists.
 		{:else if $game.data}
 			<GameDisplay game={$game.data} />
 		{:else}
