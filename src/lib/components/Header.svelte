@@ -9,7 +9,13 @@
 <style>
 	div {
 		width: 100%;
-		background-color: green;
+		height: 80px;
+
+		background-color: rebeccapurple;
+		color: whitesmoke;
+
+		line-height: 80px;
+		font-size: 20px;
 	}
 	h1 {
 		margin: 0px;
