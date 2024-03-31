@@ -9,6 +9,8 @@
 
 	import '../style.css'
 
+	let gameLoading = false;
+
 	async function create() {
 		const randomName = uniqueNamesGenerator({
 			dictionaries: [adjectives, adjectives, colors, animals],
@@ -20,7 +22,8 @@
 
 		// add waiting and add redirecting timeout
 		if (success) {
-			goto('./play-game?name=' + randomName);
+			gameLoading = true;
+			setTimeout(() => goto('./play-game?name=' + randomName), 1500);
 		} else {
 		}
 	}
@@ -50,6 +53,9 @@
 		<FileInterface bind:chosenQuestions />
 		<br>
 		<button disabled={chosenQuestions.length === 0} on:click={create}>Create</button>
+		{#if gameLoading}
+		Redirecting you to the game please wait
+		{/if}
 	</div>
 	<h3>Example set of questions</h3>
 		<div class="box">
