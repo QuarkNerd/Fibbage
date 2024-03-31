@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { login } from '$lib/firebase';
+	import { Header } from '..';
 	import SubmitText from '../SubmitText.svelte';
 
 	export let user: string | null;
@@ -18,4 +19,7 @@
 	}
 </script>
 
-<SubmitText placeholder="Type your name and press enter" callback={submit} />
+<Header header="Enter name" />
+<div class="main">
+	<SubmitText placeholder="Type your name and press enter" callback={submit} />
+</div>

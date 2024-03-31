@@ -11,5 +11,11 @@
 
 <form on:submit|preventDefault={validate}>
 	<input {placeholder} bind:value={text} />
-	<button type="submit"> Submit </button>
 </form>
+
+<style>
+	input {
+		width: 90%;
+		min-width: 200px;
+	}
+</style>
